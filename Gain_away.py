@@ -19,7 +19,7 @@ def peaks(values, height=10, n_channels=128, mean=None, y_title = "Frequency"):
     bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2
 
     # Hledání vrcholů v histogramu
-    peaks_idx, _ = find_peaks(counts, height=height + mean if mean is not None else height)
+    peaks_idx, _ = find_peaks(counts, height= mean*height)
     if len(peaks_idx) == 0:
          return None
     # Gaussian funkce
@@ -62,7 +62,7 @@ def peaks(values, height=10, n_channels=128, mean=None, y_title = "Frequency"):
 
     return fit_params, bin_centers, counts, bin_edges
 
-def plot_files(variables, folder_path = r"C:/sfg/json", namef=None, datef=None, chips = False, height=10):
+def plot_files(variables, folder_path = r"C:/sfg/json", namef=None, datef=None, chips = False, height=1.15):
     """ chips if False, plots all chips in one graph, if True, plots seperate graphs for chips"""
     results = {}
     for var in variables: 
@@ -335,5 +335,5 @@ def plot_files(variables, folder_path = r"C:/sfg/json", namef=None, datef=None, 
     return results
             
     
-plot_files(["innse_away"], folder_path=r"C:/sfg/json", namef="SN20USEH40000148_H1", datef="20250702",chips = True, height = 50)
+plot_files(["innse_away"], folder_path=r"C:/sfg/json", namef="SN20USEH40000148_H1", datef="20250702",chips = True, height = 1.05)
 
